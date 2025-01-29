@@ -1,0 +1,71 @@
+﻿<Window x:Class="AudioSwitch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AudioSwitch"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Background="#edf2f4"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Audio Switcher"
+        Height="450" Width="430"
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing">
+    <Grid>
+        <!-- Definições de Linhas e Colunas -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="90" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="70" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+
+        <!-- TextBox para cada Atalho -->
+        <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Text="Audio Switcher" FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Text="Selecione e salve os atalhos que deseja utilizar para alterar o dispositivo atual de audio!" FontSize="13" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" />
+
+        <TextBlock Grid.Column="1" Grid.Row="4" Text="Atalho 1: " FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBox Grid.Column="2" Grid.Row="4" Style="{StaticResource MaterialDesignOutlinedTextBox}" Name="Hotkey1TextBox" HorizontalAlignment="Center" Width="300" Height="50"
+         IsReadOnly="True" VerticalAlignment="Center" Text="Atalho 1" PreviewMouseDown="Hotkey1Click" Focusable="False" />
+
+        <TextBlock Grid.Column="1" Grid.Row="6" Text="Atalho 2: " FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBox Grid.Column="2" Grid.Row="6" Style="{StaticResource MaterialDesignOutlinedTextBox}" Name="Hotkey2TextBox" HorizontalAlignment="Center" Width="300" Height="50"
+         IsReadOnly="True" VerticalAlignment="Center" Text="Atalho 2" PreviewMouseDown="Hotkey2Click" Focusable="False" />
+
+        <TextBlock Grid.Column="1" Grid.Row="8" Text="Atalho 3: " FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBox Grid.Column="2" Grid.Row="8" Style="{StaticResource MaterialDesignOutlinedTextBox}" Name="Hotkey3TextBox" HorizontalAlignment="Center" Width="300" Height="50"
+         IsReadOnly="True" VerticalAlignment="Center" Text="Atalho 3" PreviewMouseDown="Hotkey3Click" Focusable="False" />
+
+        <Button Content="Salvar Atalhos" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="9" Click="OnSaveClick" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#2b2d42" BorderBrush="#8d99ae" Width="150" Height="40" />
+        <Button Content="Limpar Atalhos" Grid.Column="2" Grid.Row="9" Click="OnClearHotkeysClick" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#2b2d42" BorderBrush="#8d99ae" Width="150" Height="40" />
+
+        <!-- Taskbar Icon -->
+        <tb:TaskbarIcon x:Name="TaskbarIcon"
+                        IconSource="Images\icon.ico"
+                        ToolTipText="Audio Switcher"
+                        TrayMouseDoubleClick="OnShowWindowClick">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Abrir" Click="OnShowWindowClick" />
+                    <MenuItem Header="Sair" Click="OnExitClick" />
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+    </Grid>
+</Window>
